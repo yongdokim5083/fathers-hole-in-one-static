@@ -15,8 +15,9 @@
   ).join("");
 
   document.querySelector("#story-copy").innerHTML = data.story.map((text) => `<p>${text}</p>`).join("");
+  const version = window.SITE_VERSION ? `?v=${window.SITE_VERSION}` : "";
   document.querySelector("#gallery-grid").innerHTML = data.gallery.map((image, index) =>
-    `<button type="button" class="gallery-item" data-gallery-index="${index}" aria-label="${image.caption} 크게 보기"><img src="${image.src}" alt="${image.alt}"><span>${image.caption}</span></button>`
+    `<button type="button" class="gallery-item" data-gallery-index="${index}" aria-label="${image.caption} 크게 보기"><img src="${image.src}${version}" alt="${image.alt}"><span>${image.caption}</span></button>`
   ).join("");
   document.querySelector("#message-grid").innerHTML = data.messages.map((message) =>
     `<blockquote class="message"><p>${message.text}</p><footer>— ${message.name}</footer></blockquote>`
@@ -31,7 +32,8 @@
   function openModal(index, trigger) {
     const image = data.gallery[index];
     lastTrigger = trigger;
-    modalImage.src = image.src;
+    const ver = window.SITE_VERSION ? `?v=${window.SITE_VERSION}` : "";
+    modalImage.src = image.src + ver;
     modalImage.alt = image.alt;
     modalCaption.textContent = image.caption;
     modal.classList.add("is-open");

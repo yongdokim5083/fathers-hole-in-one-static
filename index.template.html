@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="평생 기억할 아버지의 홀인원, 그 완벽한 순간을 기록합니다." />
+    <meta name="theme-color" content="#031812" />
+    <title>아버지의 홀인원 기념관</title>
+    <!-- Social preview / favicon -->
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" href="/images/hero/hole-in-one-hero.png" />
+    <link rel="apple-touch-icon" href="/images/hero/hole-in-one-hero.png" />
+    <link rel="canonical" href="https://yongdokim5083.github.io/fathers-hole-in-one-static/" />
+    <meta property="og:title" content="아버지의 홀인원 기념관" />
+    <meta property="og:description" content="평생 기억할 아버지의 홀인원, 그 완벽한 순간을 기록합니다." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://yongdokim5083.github.io/fathers-hole-in-one-static/" />
+    <meta property="og:image" content="https://yongdokim5083.github.io/fathers-hole-in-one-static/images/hero/hole-in-one-hero.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="아버지의 홀인원 기념관" />
+    <meta name="twitter:description" content="평생 기억할 아버지의 홀인원, 그 완벽한 순간을 기록합니다." />
+    <meta name="twitter:image" content="https://yongdokim5083.github.io/fathers-hole-in-one-static/images/hero/hole-in-one-hero.png" />
+    <link rel="stylesheet" href="./css/style.css?v=__VERSION__" />
+  </head>
+  <body>
+    <main>
+      <section id="home" class="hero">
+        <div class="hero__image" aria-hidden="true"></div>
+        <div class="hero__shade" aria-hidden="true"></div>
+        <header class="site-header">
+          <a class="brand" href="#home" aria-label="처음으로"><span class="brand__mark">H</span><span>HOLE IN ONE</span></a>
+          <nav aria-label="주요 메뉴">
+            <a href="#record">기록</a><a href="#story">이야기</a><a href="#gallery">갤러리</a><a href="#messages">축하의 마음</a>
+          </nav>
+        </header>
+        <div class="hero__content shell">
+          <div class="hero__copy">
+            <p class="overline"><span></span>A perfect moment</p>
+            <h1 data-content="hero.title"></h1>
+            <p class="hero__subtitle" data-content="hero.subtitle"></p>
+            <div class="gold-line"></div>
+            <p class="hero__date" data-content="event.date"></p>
+            <p class="hero__place"><span data-content="event.club"></span> · <span data-content="event.course"></span></p>
+          </div>
+        </div>
+      </section>
+
+      <section id="record" class="section shell">
+        <div class="section-title"><p class="eyebrow">The record</p><h2>그날의 기록</h2></div>
+        <div id="record-grid" class="record-grid"></div>
+      </section>
+
+      <section id="story" class="section section--tinted">
+        <div class="shell story-grid">
+          <div><p class="eyebrow eyebrow--left">The story</p><h2>단 한 번의 스윙,<br />오래 남을 이야기</h2></div>
+          <div id="story-copy" class="story-copy"></div>
+        </div>
+      </section>
+
+      <section id="gallery" class="section shell">
+        <div class="section-title"><p class="eyebrow">Gallery</p><h2>기억하고 싶은 장면</h2></div>
+        <div id="gallery-grid" class="gallery-grid"></div>
+      </section>
+
+      <section id="messages" class="section section--tinted">
+        <div class="shell">
+          <div class="section-title"><p class="eyebrow">Congratulations</p><h2>축하의 마음</h2></div>
+          <div id="message-grid" class="message-grid"></div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer"><p>A perfect moment, forever remembered.</p><small><span data-content="event.date"></span> · WITH LOVE, FROM FAMILY</small></footer>
+
+    <div id="image-modal" class="modal" role="dialog" aria-modal="true" aria-label="사진 크게 보기" aria-hidden="true">
+      <button class="modal__backdrop" type="button" aria-label="사진 닫기"></button>
+      <div class="modal__panel">
+        <button id="modal-close" class="modal__close" type="button" aria-label="사진 닫기">×</button>
+        <img id="modal-image" src="" alt="" />
+        <p id="modal-caption"></p>
+      </div>
+    </div>
+    <script>window.SITE_VERSION='__VERSION__';</script>
+    <script src="./js/content.js?v=__VERSION__"></script>
+    <script src="./js/main.js?v=__VERSION__"></script>
+  </body>
+</html>
