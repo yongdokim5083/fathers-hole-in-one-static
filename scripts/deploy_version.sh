@@ -24,6 +24,11 @@ if [ -f "$CSS_TEMPLATE" ]; then
 fi
 
 git add "$OUT"
+
+# Configure git user for CI commits
+git config user.name "github-actions[bot]" || true
+git config user.email "41898282+github-actions[bot]@users.noreply.github.com" || true
+
 git commit -m "chore(deploy): set site version $VERSION" || { echo "No changes to commit"; }
 git push origin main
 
