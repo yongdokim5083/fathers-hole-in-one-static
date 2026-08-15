@@ -8,7 +8,7 @@ window.memorial = {
     date: "2026. 08. 9",
     club: "고령 오펠GC 푸르내코스",
     course: "7번 홀 · PAR 3",
-    distance: "145 m",
+    distance: "154 m",
     clubUsed: "7 Iron"
   },
   story: [
@@ -17,8 +17,8 @@ window.memorial = {
   ],
   gallery: [
     { src: "./images/gallery/golf-course.png", alt: "해 질 무렵의 골프 코스", caption: "모든 것이 완벽했던 코스" },
-    { src: "./images/gallery/golf-ball.png", alt: "홀 가까이에 놓인 골프공", caption: "홀컵으로 사라진 단 하나의 공" },
-    { src: "./images/hero/hole-in-one-hero.png", alt: "골프장에서 기뻐하는 골퍼", caption: "평생 기억할 환희의 순간" }
+    { src: "./images/gallery/golf-ball2.jpeg", alt: "홀에 놓인 골프공", caption: "홀컵으로 사라진 단 하나의 공" },
+    { src: "./images/gallery/golf-congrats2.jpeg", alt: "골프장에서 기뻐하는 골퍼", caption: "평생 기억할 환희의 순간" }
   ],
   messages: [
     { name: "가족 일동", text: "아버지의 멋진 순간을 진심으로 축하드려요. 오래도록 건강하게 함께 라운드해요!" },
