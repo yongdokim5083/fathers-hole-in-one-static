@@ -5,7 +5,7 @@ window.memorial = {
     subtitle: "한 번의 완벽한 스윙, 그리고 우리 가족이 오래도록 간직할 가장 빛나는 순간."
   },
   event: {
-    date: "2026. 08. 9",
+    date: "2026. 08. 09",
     club: "고령 오펠GC 푸르내코스",
     course: "7번 홀 · PAR 3",
     distance: "154 m",
