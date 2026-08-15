@@ -15,6 +15,14 @@ fi
 
 sed "s/__VERSION__/$VERSION/g" "$TEMPLATE" > "$OUT"
 
+# Generate versioned CSS from template if present
+CSS_TEMPLATE=css/style.template.css
+CSS_OUT=css/style.css
+if [ -f "$CSS_TEMPLATE" ]; then
+  sed "s/__VERSION__/$VERSION/g" "$CSS_TEMPLATE" > "$CSS_OUT"
+  git add "$CSS_OUT"
+fi
+
 git add "$OUT"
 git commit -m "chore(deploy): set site version $VERSION" || { echo "No changes to commit"; }
 git push origin main
