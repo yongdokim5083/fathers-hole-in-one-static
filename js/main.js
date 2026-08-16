@@ -128,10 +128,11 @@
     let lastScroll = window.scrollY;
     const THRESHOLD = 120;
 
-    // ensure fixed positioning if CSS fails to apply
-    quick.style.position = quick.style.position || 'fixed';
-    quick.style.right = quick.style.right || '20px';
-    quick.style.bottom = quick.style.bottom || '20px';
+    // force fixed positioning and high z-index as a fallback
+    quick.style.position = 'fixed';
+    quick.style.right = '20px';
+    quick.style.bottom = '20px';
+    quick.style.zIndex = '9999';
 
     function onScroll() {
       const y = window.scrollY;
