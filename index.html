@@ -66,6 +66,16 @@
         <div class="shell">
           <div class="section-title"><p class="eyebrow">Congratulations</p><h2>축하의 마음</h2></div>
           <div id="message-grid" class="message-grid"></div>
+          <form id="message-form" class="message-form" aria-label="축하 메시지 등록">
+            <label for="message-name">이름</label>
+            <input id="message-name" name="name" type="text" placeholder="이름을 입력하세요" required />
+            <label for="message-text">메시지</label>
+            <textarea id="message-text" name="text" rows="3" placeholder="축하의 말을 남겨주세요" required></textarea>
+            <div class="message-form__actions">
+              <button type="submit" class="button">보내기</button>
+            </div>
+            <p id="message-status" class="message-status" aria-live="polite"></p>
+          </form>
         </div>
       </section>
     </main>

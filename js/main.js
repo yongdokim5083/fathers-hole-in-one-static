@@ -19,9 +19,68 @@
   document.querySelector("#gallery-grid").innerHTML = data.gallery.map((image, index) =>
     `<button type="button" class="gallery-item" data-gallery-index="${index}" aria-label="${image.caption} 크게 보기"><img src="${image.src}${version}" alt="${image.alt}"><span>${image.caption}</span></button>`
   ).join("");
-  document.querySelector("#message-grid").innerHTML = data.messages.map((message) =>
-    `<blockquote class="message"><p>${message.text}</p><footer>— ${message.name}</footer></blockquote>`
-  ).join("");
+  const STORAGE_KEY = "memorial.messages";
+
+  function loadStoredMessages() {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      return raw ? JSON.parse(raw) : [];
+    } catch (e) {
+      return [];
+    }
+  }
+
+  function saveStoredMessages(list) {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
+    } catch (e) {
+      // ignore
+    }
+  }
+
+  const storedMessages = loadStoredMessages();
+  const allMessages = [].concat(data.messages || [], storedMessages || []);
+
+  function renderMessages(messages) {
+    document.querySelector("#message-grid").innerHTML = messages.map((message) =>
+      `<blockquote class="message"><p>${escapeHtml(message.text)}</p><footer>— ${escapeHtml(message.name)}</footer></blockquote>`
+    ).join("");
+  }
+
+  function escapeHtml(str) {
+    return String(str)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#39;");
+  }
+
+  renderMessages(allMessages);
+
+  const form = document.querySelector('#message-form');
+  if (form) {
+    form.addEventListener('submit', (ev) => {
+      ev.preventDefault();
+      const nameInput = document.querySelector('#message-name');
+      const textInput = document.querySelector('#message-text');
+      const status = document.querySelector('#message-status');
+      const name = (nameInput.value || '').trim();
+      const text = (textInput.value || '').trim();
+      if (!name || !text) {
+        status.textContent = '이름과 메시지를 모두 입력해주세요.';
+        return;
+      }
+      const newMessage = { name, text };
+      storedMessages.push(newMessage);
+      saveStoredMessages(storedMessages);
+      renderMessages(allMessages.concat([newMessage]));
+      nameInput.value = '';
+      textInput.value = '';
+      status.textContent = '메시지가 등록되었습니다. 감사합니다.';
+      setTimeout(() => { status.textContent = ''; }, 3000);
+    });
+  }
 
   const modal = document.querySelector("#image-modal");
   const modalImage = document.querySelector("#modal-image");

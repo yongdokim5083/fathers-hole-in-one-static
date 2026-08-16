@@ -24,6 +24,13 @@ h1,h2{margin:0;font-family:var(--serif);font-weight:500}h1{max-width:760px;font-
 .message p{min-height:96px;margin:8px 0 0;color:rgba(244,239,227,.7);line-height:1.8}
 .message p::after{content:'”';display:block;color:var(--gold);font:42px/1 var(--serif);margin-top:12px;text-align:right}
 .message footer{margin-top:24px;color:var(--gold-light);font-size:12px;letter-spacing:.15em}
+.message-form{margin-top:24px;display:flex;flex-direction:column;gap:12px;max-width:720px}
+.message-form label{font-size:13px;color:rgba(244,239,227,.6)}
+.message-form input,.message-form textarea{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);color:var(--ivory);padding:10px 12px;border-radius:8px;font-size:15px}
+.message-form input:focus,.message-form textarea:focus{outline:none;box-shadow:0 0 0 4px rgba(198,154,75,.06);border-color:var(--gold-light)}
+.message-form__actions{display:flex;justify-content:flex-end}
+.message-form .button{background:var(--gold);color:var(--forest-950);border:0;padding:10px 16px;border-radius:8px;font-weight:700;cursor:pointer}
+.message-status{color:rgba(244,239,227,.7);font-size:13px;margin-top:6px}
 .note{text-align:center;margin:30px 0 0;color:rgba(244,239,227,.4);font-size:12px}.note code{font-family:monospace}
 .footer{padding:48px 24px;text-align:center;border-top:1px solid rgba(255,255,255,.08)}.footer p{margin:0;color:var(--gold-light);font:20px var(--serif)}.footer small{display:block;margin-top:12px;color:rgba(244,239,227,.35);font-size:10px;letter-spacing:.18em}
 .modal{position:fixed;z-index:100;inset:0;display:grid;place-items:center;padding:24px;visibility:hidden;opacity:0;transition:opacity .25s,visibility .25s}.modal.is-open{visibility:visible;opacity:1}.modal__backdrop{position:absolute;inset:0;width:100%;height:100%;border:0;background:rgba(1,10,7,.92);cursor:zoom-out}.modal__panel{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;max-width:min(1100px,94vw);max-height:92vh}.modal__panel img{display:block;max-width:100%;max-height:82vh;object-fit:contain;box-shadow:0 24px 80px rgba(0,0,0,.55)}.modal__panel p{margin:16px 0 0;color:rgba(244,239,227,.8);font:18px var(--serif);text-align:center}.modal__close{position:absolute;z-index:2;top:-18px;right:-18px;display:grid;place-items:center;width:44px;height:44px;border:1px solid rgba(226,194,126,.65);border-radius:50%;background:var(--forest-950);color:var(--ivory);font-size:30px;line-height:1;cursor:pointer}.modal__close:hover,.modal__close:focus-visible{background:var(--gold);color:var(--forest-950)}body.modal-open{overflow:hidden}
