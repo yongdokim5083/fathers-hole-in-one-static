@@ -126,10 +126,20 @@
     if (!quick || !toggle || !panel) return;
 
     let lastScroll = window.scrollY;
-    const THRESHOLD = 200;
+    const THRESHOLD = 120;
+
+    // ensure fixed positioning if CSS fails to apply
+    quick.style.position = quick.style.position || 'fixed';
+    quick.style.right = quick.style.right || '20px';
+    quick.style.bottom = quick.style.bottom || '20px';
 
     function onScroll() {
       const y = window.scrollY;
+      const scrollable = document.documentElement.scrollHeight > window.innerHeight + 10;
+      if (!scrollable) {
+        quick.classList.remove('is-visible');
+        return;
+      }
       if (y > THRESHOLD) quick.classList.add('is-visible');
       else quick.classList.remove('is-visible');
       lastScroll = y;
