@@ -117,4 +117,41 @@
   document.addEventListener("keydown", (event) => {
     if (event.key === "Escape" && modal.classList.contains("is-open")) closeModal();
   });
+
+  // Quick menu: show on scroll and toggle panel
+  (function setupQuickMenu() {
+    const quick = document.getElementById('quick-menu');
+    const toggle = document.getElementById('quick-menu-toggle');
+    const panel = document.getElementById('quick-menu-panel');
+    if (!quick || !toggle || !panel) return;
+
+    let lastScroll = window.scrollY;
+    const THRESHOLD = 200;
+
+    function onScroll() {
+      const y = window.scrollY;
+      if (y > THRESHOLD) quick.classList.add('is-visible');
+      else quick.classList.remove('is-visible');
+      lastScroll = y;
+    }
+
+    let open = false;
+    toggle.addEventListener('click', (ev) => {
+      open = !open;
+      quick.classList.toggle('open', open);
+      quick.setAttribute('aria-hidden', String(!open));
+      if (open) toggle.setAttribute('aria-label', '퀵메뉴 닫기');
+      else toggle.setAttribute('aria-label', '퀵메뉴 열기');
+    });
+
+    panel.querySelectorAll('a').forEach((a) => {
+      a.addEventListener('click', () => {
+        open = false;
+        quick.classList.remove('open');
+      });
+    });
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  })();
 })();
