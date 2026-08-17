@@ -66,6 +66,18 @@
         <div class="shell">
           <div class="section-title"><p class="eyebrow">Congratulations</p><h2>축하의 마음</h2></div>
           <div id="message-grid" class="message-grid"></div>
+          <!--
+          <form id="message-form" class="message-form" aria-label="축하 메시지 등록" hidden>
+            <label for="message-name">이름</label>
+            <input id="message-name" name="name" type="text" placeholder="이름을 입력하세요" required />
+            <label for="message-text">메시지</label>
+            <textarea id="message-text" name="text" rows="3" placeholder="축하의 말을 남겨주세요" required></textarea>
+            <div class="message-form__actions">
+              <button type="submit" class="button">보내기</button>
+            </div>
+            <p id="message-status" class="message-status" aria-live="polite"></p>
+          </form>
+          -->
         </div>
       </section>
     </main>
@@ -79,6 +91,18 @@
         <img id="modal-image" src="" alt="" />
         <p id="modal-caption"></p>
       </div>
+    </div>
+    <div id="quick-menu" class="quick-menu">
+      <button id="quick-menu-toggle" class="quick-menu__toggle" type="button" aria-label="퀵메뉴 열기" aria-expanded="false" aria-controls="quick-menu-panel">
+        <span class="quick-menu__toggle-icon" aria-hidden="true"><i></i><i></i><i></i></span>
+      </button>
+      <nav id="quick-menu-panel" class="quick-menu__panel" aria-label="퀵 메뉴">
+        <a class="quick-menu__item" href="#home" style="--x:-111px;--y:-18px;--r:9deg">처음으로</a>
+        <a class="quick-menu__item" href="#record" style="--x:-100px;--y:-51px;--r:27deg">기록</a>
+        <a class="quick-menu__item" href="#story" style="--x:-79px;--y:-79px;--r:45deg">이야기</a>
+        <a class="quick-menu__item" href="#gallery" style="--x:-51px;--y:-100px;--r:63deg">갤러리</a>
+        <a class="quick-menu__item" href="#messages" style="--x:-18px;--y:-111px;--r:81deg">축하의 마음</a>
+      </nav>
     </div>
     <script>window.SITE_VERSION='__VERSION__';</script>
     <script src="./js/content.js?v=__VERSION__"></script>
