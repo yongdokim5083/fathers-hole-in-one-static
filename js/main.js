@@ -125,41 +125,51 @@
     const panel = document.getElementById('quick-menu-panel');
     if (!quick || !toggle || !panel) return;
 
-    let lastScroll = window.scrollY;
     const THRESHOLD = 120;
 
-    // force fixed positioning and high z-index as a fallback
-    quick.style.position = 'fixed';
-    quick.style.right = '20px';
-    quick.style.bottom = '20px';
-    quick.style.zIndex = '9999';
+    function setOpen(nextOpen) {
+      open = nextOpen;
+      quick.classList.toggle('open', open);
+      toggle.setAttribute('aria-expanded', String(open));
+      toggle.setAttribute('aria-label', open ? '퀵메뉴 닫기' : '퀵메뉴 열기');
+      panel.querySelectorAll('a').forEach((link) => {
+        link.tabIndex = open ? 0 : -1;
+      });
+    }
 
     function onScroll() {
       const y = window.scrollY;
       const scrollable = document.documentElement.scrollHeight > window.innerHeight + 10;
       if (!scrollable) {
         quick.classList.remove('is-visible');
+        setOpen(false);
         return;
       }
       if (y > THRESHOLD) quick.classList.add('is-visible');
-      else quick.classList.remove('is-visible');
-      lastScroll = y;
+      else {
+        quick.classList.remove('is-visible');
+        setOpen(false);
+      }
     }
 
     let open = false;
-    toggle.addEventListener('click', (ev) => {
-      open = !open;
-      quick.classList.toggle('open', open);
-      quick.setAttribute('aria-hidden', String(!open));
-      if (open) toggle.setAttribute('aria-label', '퀵메뉴 닫기');
-      else toggle.setAttribute('aria-label', '퀵메뉴 열기');
-    });
+    setOpen(false);
+    toggle.addEventListener('click', () => setOpen(!open));
 
     panel.querySelectorAll('a').forEach((a) => {
       a.addEventListener('click', () => {
-        open = false;
-        quick.classList.remove('open');
+        setOpen(false);
       });
+    });
+
+    document.addEventListener('click', (event) => {
+      if (open && !quick.contains(event.target)) setOpen(false);
+    });
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && open) {
+        setOpen(false);
+        toggle.focus();
+      }
     });
 
     window.addEventListener('scroll', onScroll, { passive: true });
