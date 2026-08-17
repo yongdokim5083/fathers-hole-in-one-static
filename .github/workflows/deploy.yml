@@ -11,6 +11,9 @@ on:
       - 'README.md'
       - '.github/workflows/deploy.yml'
 
+permissions:
+  contents: write
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
