@@ -5,7 +5,7 @@
 *{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;background:var(--forest-950);color:var(--ivory);font-family:var(--sans)}
 a{color:inherit;text-decoration:none} img{display:block;max-width:100%} ::selection{background:var(--gold);color:var(--forest-950)}
 .shell{width:min(calc(100% - 48px),1280px);margin-inline:auto}.hero{position:relative;min-height:820px;border-bottom:1px solid rgba(198,154,75,.35);overflow:hidden}
-.hero__image{position:absolute;inset:0;background:url('../images/hero/hole-in-one-hero.png?v=ed62d1d') 62% center/cover no-repeat}
+.hero__image{position:absolute;inset:0;background:url('../images/hero/hole-in-one-hero.png?v=efaa022') 62% center/cover no-repeat}
 .hero__shade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(3,24,18,.94),rgba(3,24,18,.74) 38%,rgba(3,24,18,.14) 72%,rgba(3,24,18,.34)),linear-gradient(0deg,var(--forest-950),transparent 24%)}
 .site-header{position:absolute;z-index:2;inset:0 0 auto;display:flex;align-items:center;justify-content:space-between;height:80px;padding:0 max(24px,calc((100vw - 1280px)/2));border-bottom:1px solid rgba(255,255,255,.12)}
 .brand{display:flex;align-items:center;gap:12px;color:var(--gold-light);font:18px var(--serif);letter-spacing:.12em}.brand__mark{display:grid;place-items:center;width:36px;height:36px;border:1px solid rgba(198,154,75,.6);border-radius:50%;font-size:14px}
