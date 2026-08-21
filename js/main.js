@@ -47,6 +47,16 @@
     ).join("");
   }
 
+  function mergeUniqueMessages(...messageLists) {
+    const seen = new Set();
+    return messageLists.flat().filter((message) => {
+      const key = `${String(message.name || "").trim()}\n${String(message.text || "").trim()}`;
+      if (seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    });
+  }
+
   function escapeHtml(str) {
     return String(str)
       .replace(/&/g, "&amp;")
@@ -57,6 +67,50 @@
   }
 
   renderMessages(allMessages);
+
+  async function loadFirebaseMessages() {
+    const config = window.FIREBASE_CONFIG;
+    if (!config || !config.apiKey || !config.projectId || !config.appId) return;
+
+    try {
+      const appModuleUrl = "https://www.gstatic.com/firebasejs/12.17.1/firebase-app.js";
+      const firestoreModuleUrl = "https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
+      const [firebaseApp, firestore] = await Promise.all([
+        import(appModuleUrl),
+        import(firestoreModuleUrl)
+      ]);
+
+      const app = firebaseApp.getApps().length
+        ? firebaseApp.getApp()
+        : firebaseApp.initializeApp(config);
+      const db = firestore.getFirestore(app);
+      const approvedMessages = firestore.query(
+        firestore.collection(db, "messages"),
+        firestore.where("approved", "==", true),
+        firestore.limit(100)
+      );
+      const snapshot = await firestore.getDocs(approvedMessages);
+      const remoteMessages = snapshot.docs
+        .map((document) => {
+          const message = document.data();
+          return {
+            name: String(message.name || "").trim(),
+            text: String(message.text || "").trim(),
+            createdAt: message.createdAt?.toMillis?.() || 0
+          };
+        })
+        .filter((message) => message.name && message.text)
+        .sort((a, b) => a.createdAt - b.createdAt);
+
+      if (remoteMessages.length) {
+        renderMessages(mergeUniqueMessages(allMessages, remoteMessages));
+      }
+    } catch (error) {
+      console.warn("Firebase 메시지를 불러오지 못해 기본 메시지를 표시합니다.", error);
+    }
+  }
+
+  loadFirebaseMessages();
 
   const form = document.querySelector('#message-form');
   if (form) {

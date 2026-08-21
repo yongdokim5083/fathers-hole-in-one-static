@@ -1,0 +1,11 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /messages/{messageId} {
+      // 1단계에서는 승인된 메시지 조회만 공개합니다.
+      allow read: if resource.data.approved == true;
+      allow create, update, delete: if false;
+    }
+  }
+}
